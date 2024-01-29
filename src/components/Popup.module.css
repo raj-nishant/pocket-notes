@@ -93,7 +93,7 @@
 .modalCreate {
   width: 154px;
   height: 38px;
-  background: #001f8b;
+  background: #001F8B;
   border-radius: 11px;
   color: #fff;
   font-family: Roboto;
@@ -127,6 +127,7 @@
   line-height: 160%;
   letter-spacing: 0.956px;
   padding-left: 2px;
+  
 }
 
 .modalColorMobile {
@@ -137,16 +138,19 @@
   line-height: 160%;
   letter-spacing: 0.956px;
   padding-left: 2px;
-
+  
   position: relative;
   bottom: 10px;
 }
 .colorButtonMobile {
   cursor: pointer;
+  
 }
 .colorButtonMobile:hover {
   transform: translate3d(0px, -2px, 0px);
 }
+
+
 
 .modalBackgroundMobile {
   width: 100vw;
@@ -160,10 +164,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 .modalContainerMobile {
-  position: relative;
+ position: relative;
   width: 90vw;
   height: 40vh;
   max-width: 90vw;
@@ -181,6 +186,7 @@
   margin-left: 1rem;
   margin-bottom: 1rem;
   text-align: center;
+  
 }
 
 .modalTextMobile::placeholder {
@@ -192,6 +198,7 @@
   line-height: 160%;
   letter-spacing: 0.805px;
   text-align: center;
+  
 }
 .closeButtonMobile {
   background: transparent;
@@ -204,7 +211,7 @@
   width: 154px;
   height: 38px;
   float: right;
-  background: #001f8b;
+  background:#001F8B;
   border-radius: 11px;
   color: #fff;
   font-family: Roboto;
@@ -217,4 +224,6 @@
   position: absolute;
   left: 30vw;
   bottom: 2rem;
+  
+  
 }

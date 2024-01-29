@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
-import sendIcon from "../assets/send.png";
-import sendIcon2 from "../assets/sendIcon2.png";
-import back from "../assets/back.png";
-import styles from "./Notes.module.css";
+import React, { useState, useEffect } from 'react';
+import sendIcon from '../assets/send.png';
+import sendIcon2 from '../assets/sendIcon2.png'
+import back from '../assets/back.png';
+import styles from './Notes.module.css';
 
-const Notes = (props) => {
-  const [note, setNote] = useState("");
+const NotesArea = (props) => {
+  const [note, setNote] = useState('');
+  
+ 
 
   let groupSelect = props.groupSelect;
   let notes = groupSelect.notes;
@@ -24,7 +26,7 @@ const Notes = (props) => {
     const Screen = () => {
       setScreenSize(getScreen());
     };
-    window.addEventListener("resize", Screen);
+    window.addEventListener('resize', Screen);
   }, []);
 
   const handleChange = (e) => {
@@ -32,33 +34,38 @@ const Notes = (props) => {
   };
 
   const handleSubmit = () => {
-    if (note.trim() !== "") {
-      let newGroup = [...groups];
+    if (note.trim() !== '') {
 
-      let Cgroup = newGroup[groupSelect.id];
+    let newGroup = [...groups];
 
-      let time = `${new Date().toLocaleTimeString("en-us", {
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true,
-      })}`;
+    let Cgroup = newGroup[groupSelect.id];
 
-      var date = ` ${new Date().toLocaleDateString([], {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      })}`;
+    let time = `${new Date().toLocaleTimeString('en-us', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    })}`;
 
-      Cgroup["notes"].push({ date, time, note });
-      localStorage.setItem("groups", JSON.stringify(newGroup));
-      setGroups(newGroup);
-    }
+    var date = ` ${new Date().toLocaleDateString([], {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    })}`;
+
+    
+
+
+
+    Cgroup['notes'].push({ date, time, note });
+    localStorage.setItem('groups', JSON.stringify(newGroup));
+    setGroups(newGroup);
+  }
   };
 
   const keypress = (e) => {
-    if (e.code === "Enter") {
+    if (e.code === 'Enter') {
       handleSubmit();
-      setNote("");
+      setNote('');
     }
   };
 
@@ -85,12 +92,12 @@ const Notes = (props) => {
           <div className={styles.NotesAndDateMobile}>
             {notes.map((note) => (
               <div className={styles.DateAndText}>
-                <div className={styles.TextMobile}>{note.note}</div>
-                <div className={styles.DateAndTime}>
-                  <p className={styles.DateMobile}>{note.date}</p>
-                  <p className={styles.TimeMobile}>{note.time}</p>
-                </div>
-              </div>
+               <div className={styles.TextMobile}>{note.note}</div>
+               <div className={styles.DateAndTime}>
+               <p className={styles.DateMobile}>{note.date}</p>
+               <p className={styles.TimeMobile}>{note.time}</p>
+               </div>
+             </div>
             ))}
           </div>
           <div className={styles.TextareaMobile}>
@@ -103,7 +110,7 @@ const Notes = (props) => {
               onKeyDown={keypress}
             ></textarea>
             <img
-              src={note.trim() === "" ? sendIcon : sendIcon2}
+               src={note.trim()===''?sendIcon:sendIcon2}
               className={styles.SendImgMobile}
               alt="SendImg"
               onClick={handleSubmit}
@@ -121,15 +128,17 @@ const Notes = (props) => {
             </div>
             <h2 className={styles.groupName}>{groupSelect.groupName}</h2>
           </div>
-
+         
           <div className={styles.NotesAndDate}>
             {notes.map((note) => (
+              
               <div className={styles.DateAndText}>
                 <div className={styles.Text}>{note.note}</div>
                 <div className={styles.DateAndTime}>
-                  <p className={styles.Date}>{note.date}</p>
-                  <p className={styles.Time}>{note.time}</p>
+                <p className={styles.Date}>{note.date}</p>
+                <p className={styles.Time}>{note.time}</p>
                 </div>
+                
               </div>
             ))}
           </div>
@@ -143,11 +152,11 @@ const Notes = (props) => {
               onKeyDown={keypress}
             ></textarea>
             <img
-              src={note.trim() === "" ? sendIcon : sendIcon2}
+              src={note.trim()===''?sendIcon:sendIcon2}
               className={styles.SendImg}
               alt="SendImg"
               onClick={handleSubmit}
-              disabled={note.trim() === ""}
+              disabled={note.trim() === ''}
             />
           </div>
         </div>
@@ -156,4 +165,4 @@ const Notes = (props) => {
   );
 };
 
-export default Notes;
+export default NotesArea;

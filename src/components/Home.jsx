@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import PopupModal from "./PopupModal";
-import Notes from "./Notes";
-import banner from "../assets/Banner.png";
-import lock from "../assets/lock.png";
-import "./Home.css";
+import React, { useState, useEffect } from 'react';
+import Modal from './PopUp';
+import Notes from './Notes';
+import banner from '../assets/Banner.png';
+import lock from '../assets/lock.png';
+import './Home.css';
 
-const Home = () => {
+const SideBar = () => {
   const [openModal, setOpenModal] = useState(false);
   const [groupSelect, setGroupSelect] = useState(null);
   const [groups, setGroups] = useState([]);
@@ -22,10 +22,10 @@ const Home = () => {
     const Screen = () => {
       setScreenSize(getScreen());
     };
-    window.addEventListener("resize", Screen);
+    window.addEventListener('resize', Screen);
 
     const fetchGroup = async () => {
-      let storedGroups = localStorage.getItem("groups");
+      let storedGroups = localStorage.getItem('groups');
       if (storedGroups) {
         let groups = await JSON.parse(storedGroups);
         setGroups(groups);
@@ -37,6 +37,7 @@ const Home = () => {
   const handleClick = (group) => {
     setGroupSelect(group);
   };
+
 
   return (
     <>
@@ -61,22 +62,23 @@ const Home = () => {
                 {groups.map((group) => (
                   <div
                     key={group.id}
-                    className={`groupItem ${
-                      groupSelect === group ? "selected" : ""
-                    }`}
+                    className={`groupItem ${groupSelect === group ? 'selected' : ''
+                      }`}
                     onClick={() => handleClick(group)}
                   >
                     <div
                       className="groupIcon"
                       style={{ background: group.color }}
                     >
-                      {group.groupName.split(" ").length === 1
-                        ? group.groupName.slice(0, 2).toUpperCase()
-                        : group.groupName
-                            .split(" ")
-                            .map((word, index) => (index < 2 ? word[0] : ""))
-                            .join("")
-                            .toUpperCase()}
+                      
+                      {group.groupName
+                      .split(' ').length===1
+                      ?group.groupName.slice(0, 2).toUpperCase()
+                      :group.groupName.split(' ')  
+                      .map((word,index) => index < 2 ? word[0] : '')  
+                      .join('')
+                      .toUpperCase()
+                    }
                     </div>
                     <h2 className="groupName">{group.groupName}</h2>
                   </div>
@@ -104,22 +106,22 @@ const Home = () => {
               {groups.map((group) => (
                 <div
                   key={group.id}
-                  className={`groupItem ${
-                    groupSelect === group ? "selected" : ""
-                  }`}
+                  className={`groupItem ${groupSelect === group ? 'selected' : ''
+                    }`}
                   onClick={() => handleClick(group)}
                 >
                   <div
                     className="groupIcon"
                     style={{ background: group.color }}
                   >
-                    {group.groupName.split(" ").length === 1
-                      ? group.groupName.slice(0, 2).toUpperCase()
-                      : group.groupName
-                          .split(" ")
-                          .map((word, index) => (index < 2 ? word[0] : ""))
-                          .join("")
-                          .toUpperCase()}
+                    {group.groupName
+                      .split(' ').length===1
+                      ?group.groupName.slice(0, 2).toUpperCase()
+                      :group.groupName.split(' ')  
+                      .map((word,index) => index < 2 ? word[0] : '')  
+                      .join('')
+                      .toUpperCase()
+                    }
                   </div>
                   <h2 className="groupName">{group.groupName}</h2>
                 </div>
@@ -127,7 +129,7 @@ const Home = () => {
             </div>
           </div>
           {openModal && (
-            <PopupModal
+            <Modal
               closeModal={setOpenModal}
               setGroups={setGroups}
               groups={groups}
@@ -152,7 +154,8 @@ const Home = () => {
                   </p>
                 </div>
                 <footer className="MessageAreaFooter">
-                  <img src={lock} alt="lock"></img>&nbsp; end-to-end encrypted
+                  <img src={lock} alt="lock"></img>&nbsp;
+                  end-to-end encrypted
                 </footer>
               </>
             )}
@@ -163,4 +166,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default SideBar;

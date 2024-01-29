@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import styles from "./Popup.module.css";
+import React, { useState, useEffect } from 'react';
+import styles from './PopUp.module.css';
 
-const PopupModal = (props) => {
-  const [formData, setFormData] = useState({ grpName: " ", color: " " });
+const Modal = (props) => {
+  const [formData, setFormData] = useState({ grpName: ' ', color: ' ' });
   const setGroups = props.setGroups;
   const groups = props.groups;
   const color = [
-    "#B38BFA",
-    "#FF79F2",
-    "#43E6FC",
-    "#F19576",
-    "#0047FF",
-    "#6691FF",
+    '#B38BFA',
+    '#FF79F2',
+    '#43E6FC',
+    '#F19576',
+    '#0047FF',
+    '#6691FF',
   ];
 
   const getScreen = () => {
@@ -26,20 +26,22 @@ const PopupModal = (props) => {
     const Screen = () => {
       setScreenSize(getScreen());
     };
-    window.addEventListener("resize", Screen);
+    window.addEventListener('resize', Screen);
   }, []);
 
   const handleChange = (e) => {
     e.preventDefault();
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
   };
 
   const handleChangeColor = (e) => {
     e.preventDefault();
     setFormData({
       ...formData,
-      [e.target.name]: e.target.getAttribute("color"),
+      [e.target.name]: e.target.getAttribute('color'),
     });
+
   };
 
   const handleSubmit = (e) => {
@@ -47,19 +49,19 @@ const PopupModal = (props) => {
 
     const trimmedGroupName = formData.grpName.trim().toLowerCase();
 
+
     const existingGroup = groups.find(
       (group) => group.groupName.trim().toLowerCase() === trimmedGroupName
     );
 
     if (existingGroup) {
-      alert(
-        "A group with the same name already exists. Choose a different name."
-      );
+      alert('A group with the same name already exists. Choose a different name.');
       return;
     }
 
-    if (formData.color === "") {
-      alert("Please select a color");
+
+    if (formData.color === '') {
+      alert('Please select a color');
       return;
     }
     let newGroup = [
@@ -72,7 +74,7 @@ const PopupModal = (props) => {
       },
     ];
     setGroups(newGroup);
-    localStorage.setItem("groups", JSON.stringify(newGroup));
+    localStorage.setItem('groups', JSON.stringify(newGroup));
     props.closeModal(false);
   };
 
@@ -105,20 +107,20 @@ const PopupModal = (props) => {
               <label className={styles.modalColorMobile}>Choose Colour</label>
               {color.map((color, index) => (
                 <button
-                  className={`${styles.colorButtonMobile} ${
-                    formData.color === color ? "selected" : ""
-                  }`}
+                  className={`${styles.colorButtonMobile} ${formData.color === color ? 'selected' : ''
+                    }`}
                   name="color"
                   color={color}
                   key={index}
                   id={color}
                   style={{
-                    height: "30px",
-                    width: "30px",
+                    height: '30px',
+                    width: '30px',
                     background: color,
-                    borderRadius: "25px",
-                    border: "none",
-                    marginLeft: "0.5rem",
+                    borderRadius: '25px',
+                    border: 'none',
+                    marginLeft: '0.5rem'
+
                   }}
                   onClick={handleChangeColor}
                 ></button>
@@ -127,7 +129,7 @@ const PopupModal = (props) => {
               <button
                 className={styles.modalCreateMobile}
                 onClick={handleSubmit}
-                disabled={formData.grpName.trim() === ""}
+                disabled={formData.grpName.trim() === ''}
               >
                 Create
               </button>
@@ -157,29 +159,24 @@ const PopupModal = (props) => {
             <label className={styles.modalColor}>Choose Colour</label>
             {color.map((color, index) => (
               <button
-                className={`${styles.colorButton}  ${
-                  formData.color === color ? "selected" : ""
-                }`}
+                className={`${styles.colorButton}  ${formData.color === color ? 'selected' : ''
+                  }`}
                 name="color"
                 color={color}
                 key={index}
                 id={color}
                 style={{
-                  height: "40px",
-                  width: "40px",
+                  height: '40px',
+                  width: '40px',
                   background: color,
-                  borderRadius: "25px",
-                  border: "none",
-                  marginRight: "10px",
+                  borderRadius: '25px',
+                  border: 'none',
+                  marginRight: '10px',
                 }}
                 onClick={handleChangeColor}
               ></button>
             ))}
-            <button
-              className={styles.modalCreate}
-              onClick={handleSubmit}
-              disabled={formData.grpName.trim() === ""}
-            >
+            <button className={styles.modalCreate} onClick={handleSubmit} disabled={formData.grpName.trim() === ''}>
               Create
             </button>
           </div>
@@ -189,4 +186,4 @@ const PopupModal = (props) => {
   );
 };
 
-export default PopupModal;
+export default Modal;
