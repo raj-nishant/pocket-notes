@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import styles from "./PopUp.module.css";
+import styles from "./Popup.module.css";
 
 const Modal = (props) => {
   const [formData, setFormData] = useState({ grpName: " ", color: " " });
